@@ -1,0 +1,39 @@
+<%- include('partials/header') -%>
+<%- include('partials/nav') -%>
+
+<main class="project container">
+  <!-- image row-->
+  <div class="row justify-content-center mb-5">
+    <img class="img-fluid mt-5 " src="<%= project.image%>" />
+  </div>
+
+  <!-- project data and form row-->
+  <div class="row justify-content-between">
+    <!-- project data column-->
+    <section class="projectData">
+      <div class="projectHead">
+        <h3><%= project.title %></h3>
+        <p class="desc">"<%= project.description %>"</p>
+        <!--artist-->
+        <p class="author">- <%=author.userName%> </p>
+      </div>
+     
+      <!--date posted-->
+      <h5 class="dateP">Date posted</h5> <!--confirm class name-->
+      <span><%=project.datePosted%></span>
+    </section>
+
+    <div class="projectBtns">
+      <!--delete project-->
+      <%if(project.user == user.id){ %>
+        <h5>Delete Project?</h5>
+        <form action="/project/deleteProject/<%= project.id %>?_method=DELETE" method="POST" class="col">
+          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+        </form>
+      <%}%>
+    </div>
+  </div>
+ 
+</main>
+
+<%- include('partials/footer') -%>
